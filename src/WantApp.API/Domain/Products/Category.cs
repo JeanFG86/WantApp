@@ -4,13 +4,12 @@ namespace WantApp.API.Domain.Products;
 
 public class Category : Entity
 {
-    public string Name { get; set; }
-    public bool Active { get; set; }
+    public string Name { get; private set; }
+    public bool Active { get; private set; }
 
     public Category(string name, string createdBy, string editedBy)
     {
-        var contract = new Contract<Category>().IsNotNullOrEmpty(name, "Name");
-        AddNotifications(contract);
+        Validate();
 
         Name = name;
         Active = true;
@@ -18,5 +17,21 @@ public class Category : Entity
         EditedBy = editedBy;
         CreateOn = DateTime.Today;
         EditedOn = DateTime.Today;
+    }
+
+    private void Validate()
+    {
+        var contract = new Contract<Category>()
+            .IsNotNullOrEmpty(Name, "Name")
+            .IsGreaterOrEqualsThan(Name, 3, "Name");
+        AddNotifications(contract);
+    }
+
+    public void EditInfo(string name, bool active)
+    {
+        Active = active;
+        Name = name;
+
+        Validate();
     }
 }
