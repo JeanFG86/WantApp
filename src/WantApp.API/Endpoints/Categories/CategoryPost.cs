@@ -15,7 +15,7 @@ public class CategoryPost
 
 
         if (!category.IsValid)
-            return Results.BadRequest(category.Notifications);
+            return Results.ValidationProblem(category.Notifications.ConvertToProblemDetails());
 
         context.Categories.Add(category);
         context.SaveChanges();
