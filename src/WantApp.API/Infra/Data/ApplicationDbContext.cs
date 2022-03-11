@@ -19,6 +19,7 @@ public class ApplicationDbContext : DbContext
         builder.Entity<Product>().Property(p => p.Description).HasMaxLength(255);
 
         builder.Entity<Category>().Property(p => p.Name).IsRequired();
+        //builder.Entity<Category>().Property(p => p.CreateOn).HasColumnType("");
     }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder configuration)
