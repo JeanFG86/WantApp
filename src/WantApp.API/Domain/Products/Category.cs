@@ -7,6 +7,11 @@ public class Category : Entity
     public string Name { get; private set; }
     public bool Active { get; private set; }
 
+    public Category()
+    {
+
+    }
+
     public Category(string name, string createdBy, string editedBy)
     {
         Validate();

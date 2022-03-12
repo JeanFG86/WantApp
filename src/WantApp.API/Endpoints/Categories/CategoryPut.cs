@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WantApp.API.Domain.Products;
 using WantApp.API.Infra.Data;
 
 namespace WantApp.API.Endpoints.Categories;

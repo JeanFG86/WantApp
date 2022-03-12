@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WantApp.API.Endpoints.Categories;
 using WantApp.API.Infra.Data;
@@ -9,7 +10,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
