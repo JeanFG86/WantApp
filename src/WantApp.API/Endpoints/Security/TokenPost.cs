@@ -36,7 +36,8 @@ public class TokenPost
             Subject = subject,
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
             Audience = "Audience",
-            Issuer = "WantAppIssuer"
+            Issuer = "WantAppIssuer",
+            Expires = DateTime.UtcNow.AddHours(1)
         };
 
         var tokenHandler = new JwtSecurityTokenHandler();
