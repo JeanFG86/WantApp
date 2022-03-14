@@ -1,4 +1,5 @@
-﻿using WantApp.API.Domain.Products;
+﻿using Microsoft.AspNetCore.Authorization;
+using WantApp.API.Domain.Products;
 using WantApp.API.Infra.Data;
 
 namespace WantApp.API.Endpoints.Categories;

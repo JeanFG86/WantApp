@@ -13,15 +13,15 @@ public class Category : Entity
     }
 
     public Category(string name, string createdBy, string editedBy)
-    {
-        Validate();
-
+    {        
         Name = name;
         Active = true;
         CreateBy = createdBy;
         EditedBy = editedBy;
         CreateOn = DateTime.Today;
         EditedOn = DateTime.Today;
+
+        Validate();
     }
 
     private void Validate()
