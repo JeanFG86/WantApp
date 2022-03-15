@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-using WantApp.API.Infra.Data;
-
-namespace WantApp.API.Endpoints.Categories;
+﻿namespace WantApp.API.Endpoints.Categories;
 
 public class CategoryPut
 {

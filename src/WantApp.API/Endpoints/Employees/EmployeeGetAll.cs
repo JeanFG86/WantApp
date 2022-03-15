@@ -1,9 +1,4 @@
-﻿using Dapper;
-using Microsoft.AspNetCore.Authorization;
-using Npgsql;
-using WantApp.API.Infra.Data;
-
-namespace WantApp.API.Endpoints.Employees;
+﻿namespace WantApp.API.Endpoints.Employees;
 
 
 public class EmployeeGetAll

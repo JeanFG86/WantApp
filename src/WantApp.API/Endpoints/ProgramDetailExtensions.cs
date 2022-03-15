@@ -1,7 +1,4 @@
-﻿using Flunt.Notifications;
-using Microsoft.AspNetCore.Identity;
-
-namespace WantApp.API.Endpoints;
+﻿namespace WantApp.API.Endpoints;
 
 public static class ProgramDetailExtensions
 {

@@ -1,7 +1,4 @@
-﻿using WantApp.API.Domain.Products;
-using WantApp.API.Infra.Data;
-
-namespace WantApp.API.Endpoints.Categories;
+﻿namespace WantApp.API.Endpoints.Categories;
 
 public class CategoryGetAll
 {
