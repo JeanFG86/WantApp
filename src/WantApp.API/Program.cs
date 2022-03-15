@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics;
+using Npgsql;
 using WantApp.API.Endpoints.Categories;
 using WantApp.API.Endpoints.Employees;
 using WantApp.API.Endpoints.Security;
@@ -71,6 +73,18 @@ app.MapMethods(CategoryPost.Template, CategoryPost.Methods, CategoryPost.Handle)
 app.MapMethods(CategoryGetAll.Template, CategoryGetAll.Methods, CategoryGetAll.Handle);
 app.MapMethods(CategoryPut.Template, CategoryPut.Methods, CategoryPut.Handle);
 app.MapMethods(TokenPost.Template, TokenPost.Methods, TokenPost.Handle);
+
+app.UseExceptionHandler("/error");
+app.Map("/error", (HttpContext http) =>
+{
+    var error = http.Features?.Get<IExceptionHandlerFeature>()?.Error;
+    if(error != null)
+    {
+        if(error is NpgsqlException)
+            return Results.Problem(title: "Database out", statusCode: 500);
+    }
+    return Results.Problem(title: "An error ocurred", statusCode: 500);
+});
 
 app.Run();
 
