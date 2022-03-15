@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Npgsql;
 using WantApp.API.Endpoints.Categories;
 using WantApp.API.Endpoints.Employees;
+using WantApp.API.Endpoints.Products;
 using WantApp.API.Endpoints.Security;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -73,6 +74,8 @@ app.MapMethods(CategoryPost.Template, CategoryPost.Methods, CategoryPost.Handle)
 app.MapMethods(CategoryGetAll.Template, CategoryGetAll.Methods, CategoryGetAll.Handle);
 app.MapMethods(CategoryPut.Template, CategoryPut.Methods, CategoryPut.Handle);
 app.MapMethods(TokenPost.Template, TokenPost.Methods, TokenPost.Handle);
+app.MapMethods(ProductPost.Template, ProductPost.Methods, ProductPost.Handle);
+app.MapMethods(ProductGetAll.Template, ProductGetAll.Methods, ProductGetAll.Handle);
 
 app.UseExceptionHandler("/error");
 app.Map("/error", (HttpContext http) =>
