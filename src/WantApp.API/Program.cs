@@ -85,6 +85,8 @@ app.Map("/error", (HttpContext http) =>
     {
         if(error is NpgsqlException)
             return Results.Problem(title: "Database out", statusCode: 500);
+        else if(error is BadHttpRequestException)
+            return Results.Problem(title: "Error to convert data to other type", statusCode: 500);
     }
     return Results.Problem(title: "An error ocurred", statusCode: 500);
 });

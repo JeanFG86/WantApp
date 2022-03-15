@@ -26,7 +26,7 @@ public class Product : Entity
         EditedBy = createdBy;
         CreateOn = DateTime.Now;
         EditedOn = DateTime.Now;
-        CategoryId = category.Id;
+        //CategoryId = category.Id;
 
         Validate();
     }
@@ -36,7 +36,7 @@ public class Product : Entity
         var contract = new Contract<Product>()
             .IsNotNullOrEmpty(Name, "Name")
             .IsGreaterOrEqualsThan(Name, 3, "Name")
-            .IsNotNull(Category, "Category")
+            .IsNotNull(Category, "Category", "Category not found")
             .IsNotNullOrEmpty(Description, "Description")
             .IsGreaterOrEqualsThan(Description, 3, Description);
             
