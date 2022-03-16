@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics;
 using Npgsql;
+using WantApp.API.Domain.Users;
 using WantApp.API.Endpoints.Categories;
 using WantApp.API.Endpoints.Client;
 using WantApp.API.Endpoints.Employees;
@@ -53,6 +54,7 @@ builder.Services.AddAuthentication(opt =>
 });
 
 builder.Services.AddScoped<QueryAllUsersWithClaimName>();
+builder.Services.AddScoped<UserCreator>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
