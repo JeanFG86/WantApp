@@ -1,4 +1,6 @@
-﻿namespace WantApp.API.Endpoints.Employees;
+﻿using WantApp.API.Domain.Users;
+
+namespace WantApp.API.Endpoints.Employees;
 
 public class EmployeePost
 {
@@ -7,11 +9,9 @@ public class EmployeePost
     public static Delegate Handle => ActionAsync;
 
     [Authorize(Policy = "EmployeePolice")]
-    public static async Task<IResult> ActionAsync(EmployeeRequest employeeRequest, HttpContext http, UserManager<IdentityUser> userManager)
+    public static async Task<IResult> ActionAsync(EmployeeRequest employeeRequest, HttpContext http, UserCreator userCreator)
     {
         var userId = http.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
-        var newUser = new IdentityUser { UserName =  employeeRequest.email, Email = employeeRequest.email };
-        var result = await userManager.CreateAsync(newUser, employeeRequest.password);
 
         var userClaims = new List<Claim>
         {
@@ -20,14 +20,11 @@ public class EmployeePost
             new Claim("CreatedBy", userId),
         };
 
-        if (!result.Succeeded)
-            return Results.BadRequest(result.Errors.ConvertToProblemDetails());
+        (IdentityResult identity, string userId) result = await userCreator.Create(employeeRequest.email, employeeRequest.password, userClaims);
 
-        var calimResult = await userManager.AddClaimsAsync(newUser, userClaims);
+        if (!result.identity.Succeeded)
+            return Results.ValidationProblem(result.identity.Errors.ConvertToProblemDetails());
 
-        if (!calimResult.Succeeded)
-            return Results.BadRequest(result.Errors.First());
-
-        return Results.Created($"/employees/{newUser.Id}", newUser.Id);
+        return Results.Created($"/employees/{result.userId}", result.userId);
     }
 }
