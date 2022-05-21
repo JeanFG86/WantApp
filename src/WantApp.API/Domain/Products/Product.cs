@@ -2,8 +2,6 @@
 
 public class Product : Entity
 {
-    private string userId;
-
     public string Name { get; set; }
     public Guid CategoryId { get; set; }
     public Category Category { get; set; }
