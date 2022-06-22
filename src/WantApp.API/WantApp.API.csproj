@@ -18,8 +18,9 @@
 		<Using Include="System.IdentityModel.Tokens.Jwt" />
 		<Using Include="Microsoft.IdentityModel.Tokens" />
 		<Using Include="System.Text" />
-		
-		
+		<Using Include="Dapper"/>
+		<Using Include="Npgsql"/>
+
 		<Using Include="WantApp.API.Domain.Products" />
 		<Using Include="WantApp.API.Infra.Data" />
 	</ItemGroup>

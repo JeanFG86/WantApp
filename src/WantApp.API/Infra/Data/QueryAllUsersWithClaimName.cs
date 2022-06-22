@@ -1,6 +1,4 @@
-﻿using Dapper;
-using Npgsql;
-using WantApp.API.Endpoints.Employees;
+﻿using WantApp.API.Endpoints.Employees;
 
 namespace WantApp.API.Infra.Data;
 

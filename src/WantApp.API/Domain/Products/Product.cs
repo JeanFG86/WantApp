@@ -1,4 +1,6 @@
-﻿namespace WantApp.API.Domain.Products;
+﻿using WantApp.API.Domain.Orders;
+
+namespace WantApp.API.Domain.Products;
 
 public class Product : Entity
 {
@@ -9,6 +11,7 @@ public class Product : Entity
     public bool HasStock { get; set; }
     public bool Active { get; set; }
     public decimal Price { get; private set; }
+    public ICollection<Order> Orders { get; internal set; }
 
     public Product()
     {
